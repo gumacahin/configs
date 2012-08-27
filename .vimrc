@@ -38,7 +38,7 @@
 " GUI OPTIONS {
   if has('gui_running')
     set guioptions=    " remove menu bar, tool bar & scroll bar
-    set guifont=Droid\ Sans\ Mono\ 9
+    set guifont=Liberation\ Mono\ 10
   endif
 
   " au GUIEnter * simalt ~x  " start maximized, windows only
