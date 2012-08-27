@@ -4,7 +4,7 @@
 " A little QQ...
 "
 " I had to completely rewrite my vimrc since I lost the one I've been
-" using. I reinstalled by system and neglected to backup my vimrc 
+" using. I reinstalled by system and neglected to backup my vimrc
 " believing it had it backed up in github. Turns out I deleted the
 " repo it was in for some reason.
 "
@@ -37,7 +37,9 @@
 
 " GUI OPTIONS {
   if has('gui_running')
-    set guioptions=    " remove menu bar, tool bar & scroll bar
+    " remove menu bar, tool bar & scroll bar... but leave the icon as is
+    set guioptions=i
+
     set guifont=Liberation\ Mono\ 10
   endif
 
@@ -48,8 +50,8 @@
 " APPEARANCE {
   colorscheme desert
   " highlight current line for the active window
-  augroup CursorLine                                            
-    au!                                                         
+  augroup CursorLine
+    au!
     au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
     au WinLeave * setlocal nocursorline
   augroup END
@@ -73,7 +75,7 @@
   set statusline+=%y                              " filetype
   set statusline+=%=                              " left/right separator
   set statusline+=[ASCII\ %3.3b]
-  set statusline+=\ [HEX\ \%02.2B] 
+  set statusline+=\ [HEX\ \%02.2B]
   set statusline+=\ %c,                           " cursor column
   set statusline+=%l/%L                           " cursor line/total lines
   set statusline+=\ %P                            " percent through file
