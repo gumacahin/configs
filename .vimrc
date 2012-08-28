@@ -17,21 +17,29 @@
 
 " BASICS {
   set nocompatible
-  syntax on             " syntax highlighting
-  set incsearch         " incremental search
-  set nohls             " don't highlight search matches
-  set expandtab         " use spaces instead of tabs
-  set shiftwidth=2      " number of spaces/tab
-  set smarttab          " smart backspacing on tabs
-  set autoindent        " see :help C-indent
-  set smartindent
-  set number            " show line numbers
-  set directory=~/.vim/tmp,. "where to save swap files
+  syntax on                    " syntax highlighting
+  set incsearch                " incremental search
+  set nohls                    " don't highlight search matches
+  set ignorecase
+  set smartcase
+  set expandtab                " use spaces instead of tabs
+  set shiftwidth=4             " number of spaces/tab
+  set smarttab                 " smart backspacing on tabs
+  set cindent                  " see KEY BINDINGS below
+  set number                   " show line numbers
+  set directory=~/.vim/tmp,.   " where to save swap files
   filetype plugin indent on
   set splitright
   set splitbelow
-  set nowrap
   set wildmenu
+  set showcmd                  " echo the keys typed in normal mode
+  set spell
+  set virtualedit=block
+  " side-scrolling
+  set nowrap
+  set sidescroll=1
+  set listchars=extends:>,precedes:<
+  set sidescrolloff=10
 " }
 
 
@@ -41,9 +49,11 @@
     set guioptions=i
 
     set guifont=Liberation\ Mono\ 10
+    let is_gui = 1 " see key bindings section
   endif
 
   " au GUIEnter * simalt ~x  " start maximized, windows only
+  set mousemodel=popup_setpos
 " }
 
 
@@ -65,23 +75,24 @@
 
   " the status line
   set laststatus=2                                " always show SL
-  set statusline=
-  set statusline+=%F                              " the filename
-  set statusline+=[%{strlen(&fenc)?&fenc:'none'}, " file encoding
-  set statusline+=%{&ff}]                         " file format
+  set statusline=[%f]
+  set statusline+=%y                              " filetype
   set statusline+=%h                              " help file flag
   set statusline+=%m                              " modified flag
   set statusline+=%r                              " read only flag
-  set statusline+=%y                              " filetype
   set statusline+=%=                              " left/right separator
+  set statusline+=[%{strlen(&fenc)?&fenc:'none'}, " file encoding
+  set statusline+=%{&ff}]                         " file format
   set statusline+=[ASCII\ %3.3b]
-  set statusline+=\ [HEX\ \%02.2B]
-  set statusline+=\ %c,                           " cursor column
+  set statusline+=\[HEX\ \%02.2B]
+  set statusline+=\[POS\ %c,                     " cursor column
   set statusline+=%l/%L                           " cursor line/total lines
-  set statusline+=\ %P                            " percent through file
+  set statusline+=\ %P]                           " percent through file
 " }
 
 " KEY BINDINGS {
+  " cindent fix for '#' comments
+  inoremap # X#
   " Pg Up/Down
   nmap <BS> 
   nmap <Space> 
