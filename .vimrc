@@ -23,7 +23,7 @@
   set ignorecase
   set smartcase
   set expandtab                " use spaces instead of tabs
-  set shiftwidth=4             " number of spaces/tab
+  set shiftwidth=2             " number of spaces/tab
   set smarttab                 " smart backspacing on tabs
   set cindent                  " see KEY BINDINGS below
   set number                   " show line numbers
@@ -33,12 +33,12 @@
   set splitbelow
   set wildmenu
   set showcmd                  " echo the keys typed in normal mode
-  set spell
+  "set spell
   set virtualedit=block
   " side-scrolling
   set nowrap
   set sidescroll=1
-  set listchars=extends:>,precedes:<
+  set listchars=
   set sidescrolloff=10
 " }
 
@@ -48,7 +48,7 @@
     " remove menu bar, tool bar & scroll bar... but leave the icon as is
     set guioptions=i
 
-    set guifont=Liberation\ Mono\ 10
+    set guifont=Source\ Code\ Pro\ 9
     let is_gui = 1 " see key bindings section
   endif
 
@@ -85,17 +85,19 @@
   set statusline+=%{&ff}]                         " file format
   set statusline+=[ASCII\ %3.3b]
   set statusline+=\[HEX\ \%02.2B]
-  set statusline+=\[POS\ %c,                     " cursor column
+  set statusline+=\[POS\ %c,                      " cursor column
   set statusline+=%l/%L                           " cursor line/total lines
   set statusline+=\ %P]                           " percent through file
 " }
 
 " KEY BINDINGS {
+  imap jj <Esc>
+  cmap jj <C-c>
   " cindent fix for '#' comments
   inoremap # X#
   " Pg Up/Down
-  nmap <BS> 
-  nmap <Space> 
+"  nmap <BS> 
+"  nmap <Space> 
 
   " window movement
   nmap <A-h> h
@@ -119,6 +121,11 @@
   nmap <A-.> :tabn<CR>
   imap <A-.> <Esc>:tabn<CR>
 
+  " PHP Doc
+  nmap <C-Space> :exe PhpDoc()<CR>
+  imap <C-Space> :exe PhpDoc()<CR>
+  vmap <C-Space> :exe PhpDoc()<CR>
+
 " }
 
 " PLUGINS {
@@ -130,4 +137,11 @@
 
   let Tlist_Use_Right_Window = 1
   map <silent> <right> <Esc>:TlistToggle<CR>
+" }
+
+" TEMPLATES {
+  augroup Templates
+    au!
+    au BufNewFile * silent! 0r $HOME/.vim/templates/%:e.tpl
+  augroup END
 " }
