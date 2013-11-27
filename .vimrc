@@ -93,7 +93,8 @@
 " }
 
 " KEY BINDINGS {
-  imap jj <Esc>
+  " now using an HHKB :)
+  " imap jj <Esc>
   " cindent fix for '#' comments
   inoremap # X#
   " Pg Up/Down
