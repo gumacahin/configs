@@ -17,7 +17,7 @@
 
 " BASICS {
   set nocompatible
-  set shell=/bin/bash\ -l      " for RVM
+  set shell=/bin/bash\ --login " for RVM
   syntax on                    " syntax highlighting
   set incsearch                " incremental search
   set nohls                    " don't highlight search matches
@@ -48,7 +48,6 @@
   if has('gui_running')
     " remove menu bar, tool bar & scroll bar... but leave the icon as is
     set guioptions=i
-    set lines=999 columns=999
 
 
     set guifont=Source\ Code\ Pro\ 9
@@ -94,7 +93,7 @@
 
 " KEY BINDINGS {
   " now using an HHKB :)
-  " imap jj <Esc>
+  imap jj <Esc>
   " cindent fix for '#' comments
   inoremap # X#
   " Pg Up/Down
@@ -125,7 +124,6 @@
   imap <A-,> <Esc>:tabp<CR>
   nmap <A-.> :tabn<CR>
   imap <A-.> <Esc>:tabn<CR>
-
 
 " }
 
