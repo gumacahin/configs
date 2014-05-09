@@ -17,7 +17,8 @@
 
 " BASICS {
   set nocompatible
-  set shell=/bin/bash\ --login " for RVM
+  set encoding=utf-8
+  "set shell=/bin/bash\ --login " for RVM
   syntax on                    " syntax highlighting
   set incsearch                " incremental search
   set nohls                    " don't highlight search matches
@@ -50,7 +51,9 @@
     set guioptions=i
 
 
-    set guifont=Source\ Code\ Pro\ 9
+    "set guifont=Sauce\ Code\ Powerline\ 9
+    set guifont=Terminess\ Powerline\ 12
+    "set guifont=Neep\ 11
   endif
 
   " au GUIEnter * simalt ~x  " start maximized, windows only
@@ -136,7 +139,6 @@
 
   let Tlist_Use_Right_Window = 1
   map <silent> <right> <Esc>:TlistToggle<CR>
-  let g:syntastic_ruby_exec = '/home/mvalviar/.rvm/rubies/ruby-1.9.3-p448/bin/ruby'
 
   " PHP Doc
   "nmap <C-Space> :exe PhpDoc()<CR>
@@ -150,3 +152,10 @@
     au BufNewFile * silent! 0r $HOME/.vim/templates/%:e.tpl
   augroup END
 " }
+
+
+" Latex Preview
+autocmd Filetype tex setl updatetime=1
+
+"Powerline
+let g:airline_powerline_fonts = 1
