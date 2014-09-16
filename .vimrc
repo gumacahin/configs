@@ -31,8 +31,6 @@
   set number                   " show line numbers
   set directory=~/.vim/tmp,.   " where to save swap files
   filetype plugin indent on
-  set splitright
-  set splitbelow
   set wildmenu
   set showcmd                  " echo the keys typed in normal mode
   "set spell
@@ -123,10 +121,10 @@
   endif
 
   " tab movement
-  nmap <A-,> :tabp<CR>
-  imap <A-,> <Esc>:tabp<CR>
-  nmap <A-.> :tabn<CR>
-  imap <A-.> <Esc>:tabn<CR>
+  nmap <A-,> :bp<CR>
+  imap <A-,> <Esc>:bp<CR>
+  nmap <A-.> :bn<CR>
+  imap <A-.> <Esc>:bn<CR>
 
 " }
 
@@ -157,5 +155,6 @@
 " Latex Preview
 autocmd Filetype tex setl updatetime=1
 
-"Powerline
+"vim-airline
 let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
