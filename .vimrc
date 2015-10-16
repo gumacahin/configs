@@ -1,4 +1,5 @@
 " --------------------------------------------------------------------
+"
 " mvalviar's .vimrc
 "
 " A little QQ...
@@ -32,6 +33,7 @@
   set directory=~/.vim/tmp,.   " where to save swap files
   filetype plugin indent on
   set wildmenu
+  set nofileignorecase         " very difficult feature to get used to
   set showcmd                  " echo the keys typed in normal mode
   "set spell
   set virtualedit=block
@@ -40,6 +42,9 @@
   set sidescroll=1
   set listchars=
   set sidescrolloff=10
+  set noerrorbells visualbell t_vb= " no beeping please!
+  autocmd GUIEnter * set visualbell t_vb=
+  let mapleader="\\"
 " }
 
 
@@ -49,8 +54,8 @@
     set guioptions=i
 
 
-    "set guifont=Sauce\ Code\ Powerline\ 9
-    set guifont=Terminess\ Powerline\ 12
+    set guifont=Source\ Code\ Pro\ for\ Powerline
+    "set guifont=Terminess\ Powerline\ 12
     "set guifont=Neep\ 11
   endif
 
@@ -60,7 +65,8 @@
 
 
 " APPEARANCE {
-  colorscheme desert
+  set background=dark
+  colorscheme solarized
   " highlight current line for the active window
   augroup CursorLine
     au!
@@ -68,9 +74,8 @@
     au WinLeave * setlocal nocursorline
   augroup END
 
-  " add column 80 marker
   set colorcolumn=81
-  highlight ColorColumn ctermbg=lightgrey guibg=grey30
+  "highlight ColorColumn ctermbg=lightgrey guibg=grey30
 
   " always center currentline when possible
   set scrolloff=999
@@ -102,10 +107,14 @@
 "  nmap <Space> 
 
   " window movement
-  nmap <A-h> h
-  nmap <A-l> l
-  nmap <A-k> k
-  nmap <A-j> j
+  " nmap <A-h> h
+  " nmap <A-l> l
+  " nmap <A-k> k
+  " nmap <A-j> j
+  nmap <up> k
+  nmap <left> h
+  nmap <right> l
+  nmap <down> j
 
   " resize current window
   nmap <A-Up> +
@@ -113,35 +122,13 @@
   nmap <A-Left> <
   nmap <A-Right> >
 
-  " ctrl-s saves
-  " Conficts with suspend when vim is on terminal
-  if has('gui_running')
-    nmap <C-s> :w<CR>
-    imap <C-s> <Esc>:w<CR>
-  endif
-
-  " tab movement
-  nmap <A-,> :bp<CR>
-  imap <A-,> <Esc>:bp<CR>
-  nmap <A-.> :bn<CR>
-  imap <A-.> <Esc>:bn<CR>
-
 " }
 
 " PLUGINS {
   call pathogen#infect()        " https://github.com/tpope/vim-pathogen
+  " vim-airline
+  let g:airline_powerline_fonts = 1
 
-  " https://github.com/scrooloose/nerdtree
-  map <silent> <left> <Esc>:NERDTreeToggle<CR>
-  let g:nerdtree_tabs_open_on_gui_startup=0
-
-  let Tlist_Use_Right_Window = 1
-  map <silent> <right> <Esc>:TlistToggle<CR>
-
-  " PHP Doc
-  "nmap <C-Space> :exe PhpDoc()<CR>
-  "imap <C-Space> :exe PhpDoc()<CR>
-  "vmap <C-Space> :exe PhpDoc()<CR>
 " }
 
 " TEMPLATES {
@@ -150,11 +137,3 @@
     au BufNewFile * silent! 0r $HOME/.vim/templates/%:e.tpl
   augroup END
 " }
-
-
-" Latex Preview
-autocmd Filetype tex setl updatetime=1
-
-"vim-airline
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#tabline#enabled = 1
