@@ -26,7 +26,7 @@
   set ignorecase
   set smartcase
   set expandtab                " use spaces instead of tabs
-  set shiftwidth=2             " number of spaces/tab
+  set shiftwidth=4             " number of spaces/tab
   set smarttab                 " smart backspacing on tabs
   set cindent                  " see KEY BINDINGS below
   set number                   " show line numbers
@@ -54,7 +54,12 @@
     set guioptions=i
 
 
-    set guifont=Source\ Code\ Pro\ for\ Powerline
+
+
+    "set guifont=Terminus\ (TTF):h13
+    "set guifont=Sauce\ Code\ Powerline:h12
+    "set guifont=Terminus (TTF):h13
+    set guifont=Source\ Code\ Pro:h12
     "set guifont=Terminess\ Powerline\ 12
     "set guifont=Neep\ 11
   endif
@@ -65,8 +70,7 @@
 
 
 " APPEARANCE {
-  set background=dark
-  colorscheme solarized
+  "set background=dark
   " highlight current line for the active window
   augroup CursorLine
     au!
@@ -137,3 +141,13 @@
     au BufNewFile * silent! 0r $HOME/.vim/templates/%:e.tpl
   augroup END
 " }
+
+autocmd FileType javascript setlocal shiftwidth=2 tabstop=2
+autocmd FileType phtml setlocal shiftwidth=2 tabstop=2
+autocmd FileType html setlocal shiftwidth=2 tabstop=2
+
+" ETC
+if $VIM_CRONTAB == "true"
+    set nobackup
+    set nowritebackup
+endif
