@@ -59,7 +59,7 @@
     "set guifont=Terminus\ (TTF):h13
     "set guifont=Sauce\ Code\ Powerline:h12
     "set guifont=Terminus (TTF):h13
-    set guifont=Source\ Code\ Pro:h12
+    set guifont=Roboto\ Mono:h12
     "set guifont=Terminess\ Powerline\ 12
     "set guifont=Neep\ 11
   endif
@@ -125,6 +125,8 @@
   nmap <A-Down> -
   nmap <A-Left> <
   nmap <A-Right> >
+
+  map <C-n> :NERDTreeToggle<CR>
 
 " }
 
