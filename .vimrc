@@ -56,12 +56,7 @@
 
 
 
-    "set guifont=Terminus\ (TTF):h13
-    "set guifont=Sauce\ Code\ Powerline:h12
-    "set guifont=Terminus (TTF):h13
-    set guifont=Roboto\ Mono:h12
-    "set guifont=Terminess\ Powerline\ 12
-    "set guifont=Neep\ 11
+    set guifont=Roboto\ Mono:h14
   endif
 
   " au GUIEnter * simalt ~x  " start maximized, windows only
@@ -70,6 +65,8 @@
 
 
 " APPEARANCE {
+  " see .gvimrc
+  "colorscheme onedark
   "set background=dark
   " highlight current line for the active window
   augroup CursorLine
