@@ -4,8 +4,8 @@
 "
 " A little QQ...
 "
-" I had to completely rewrite my vimrc since I lost the one I've been
-" using. I reinstalled by system and neglected to backup my vimrc
+" I had to completely rewrite my .vimrc since I lost the one I've been
+" using. I reinstalled my system and neglected to backup my .vimrc
 " believing it had it backed up in github. Turns out I deleted the
 " repo it was in for some reason.
 "
@@ -19,7 +19,6 @@
 " BASICS {
   set nocompatible
   set encoding=utf-8
-  "set shell=/bin/bash\ --login " for RVM
   syntax on                    " syntax highlighting
   set incsearch                " incremental search
   set nohls                    " don't highlight search matches
@@ -28,7 +27,7 @@
   set expandtab                " use spaces instead of tabs
   set shiftwidth=4             " number of spaces/tab
   set smarttab                 " smart backspacing on tabs
-  set cindent                  " see KEY BINDINGS below
+  set cindent                  " see KEY_BINDINGS below
   set number                   " show line numbers
   set directory=~/.vim/tmp,.   " where to save swap files
   filetype plugin indent on
@@ -48,14 +47,10 @@
 " }
 
 
-" GUI OPTIONS {
+" GUI_OPTIONS {
   if has('gui_running')
     " remove menu bar, tool bar & scroll bar... but leave the icon as is
     set guioptions=i
-
-
-
-
     set guifont=Roboto\ Mono:h14
   endif
 
@@ -66,7 +61,7 @@
 
 " APPEARANCE {
   " see .gvimrc
-  "colorscheme onedark
+  "colorscheme onedark " see ETC below
   "set background=dark
   " highlight current line for the active window
   augroup CursorLine
@@ -98,7 +93,7 @@
   set statusline+=\ %P]                           " percent through file
 " }
 
-" KEY BINDINGS {
+" KEY_BINDINGS {
   " now using an HHKB :)
   imap jj <Esc>
   " cindent fix for '#' comments
@@ -128,25 +123,52 @@
 " }
 
 " PLUGINS {
-  call pathogen#infect()        " https://github.com/tpope/vim-pathogen
-  " vim-airline
-  let g:airline_powerline_fonts = 1
+  call plug#begin('~/.vim/plugged')
+
+    Plug 'https://github.com/junegunn/fzf.vim'
+
+    Plug 'https://github.com/itchyny/lightline.vim'
+
+    Plug 'https://github.com/terryma/vim-multiple-cursors'
+
+    Plug 'https://github.com/tpope/vim-eunuch'
+
+    Plug 'https://github.com/tpope/vim-surround'
+
+    Plug 'https://github.com/scrooloose/nerdtree'
+
+    Plug 'https://github.com/mattn/emmet-vim'
+
+    Plug 'https://github.com/w0rp/ale'
+
+    Plug 'https://github.com/airblade/vim-gitgutter'
+
+  call plug#end()
+"}
+
+" PLUGINS {
+"  call pathogen#infect()        " https://github.com/tpope/vim-pathogen
+"  " vim-airline
+"  let g:airline_powerline_fonts = 1
 
 " }
 
 " TEMPLATES {
-  augroup Templates
-    au!
-    au BufNewFile * silent! 0r $HOME/.vim/templates/%:e.tpl
-  augroup END
+"  augroup Templates
+"    au!
+"    au BufNewFile * silent! 0r $HOME/.vim/templates/%:e.tpl
+"  augroup END
 " }
 
-autocmd FileType javascript setlocal shiftwidth=2 tabstop=2
-autocmd FileType phtml setlocal shiftwidth=2 tabstop=2
-autocmd FileType html setlocal shiftwidth=2 tabstop=2
+"autocmd FileType javascript setlocal shiftwidth=2 tabstop=2
+"autocmd FileType phtml setlocal shiftwidth=2 tabstop=2
+"autocmd FileType html setlocal shiftwidth=2 tabstop=2
 
-" ETC
-if $VIM_CRONTAB == "true"
-    set nobackup
-    set nowritebackup
-endif
+" ETC {
+  if $VIM_CRONTAB == "true"
+      set nobackup
+      set nowritebackup
+  endif
+}
+
+colorscheme onedark
