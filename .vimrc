@@ -143,6 +143,8 @@
 
     Plug 'https://github.com/airblade/vim-gitgutter'
 
+    Plug 'https://github.com/joshdick/onedark.vim'
+
   call plug#end()
 "}
 
@@ -169,6 +171,6 @@
       set nobackup
       set nowritebackup
   endif
-}
+" }
 
 colorscheme onedark
