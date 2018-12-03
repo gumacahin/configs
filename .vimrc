@@ -127,6 +127,8 @@
 
     Plug 'https://github.com/junegunn/fzf.vim'
 
+    Plug '/usr/local/opt/fzf'
+
     Plug 'https://github.com/itchyny/lightline.vim'
 
     Plug 'https://github.com/terryma/vim-multiple-cursors'
