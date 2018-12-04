@@ -29,7 +29,7 @@
   set smarttab                 " smart backspacing on tabs
   set cindent                  " see KEY_BINDINGS below
   set number                   " show line numbers
-  set directory=~/.vim/tmp,.   " where to save swap files
+  set directory=~/.vim/tmp     " where to save swap files
   filetype plugin indent on
   set wildmenu
   set nofileignorecase         " very difficult feature to get used to
@@ -56,6 +56,15 @@
 
   " au GUIEnter * simalt ~x  " start maximized, windows only
   set mousemodel=popup_setpos
+  " Disable MacVim save shortcut
+    macmenu File.Save key=<nop>
+
+  " Exit to Normal mode upon [Cmd+S]
+  inoremap <D-s> <Esc>:w<CR>
+  vnoremap <D-s> <Esc>:w<CR>
+
+  " Save in Normal mode (block Substitute)
+  nnoremap <D-s> :w<CR>
 " }
 
 
@@ -118,7 +127,8 @@
   nmap <A-Left> <
   nmap <A-Right> >
 
-  map <C-n> :NERDTreeToggle<CR>
+  map <C-Tab> :NERDTreeToggle<CR>
+  map <C-p> :Files<CR>
 
 " }
 
@@ -146,6 +156,8 @@
     Plug 'https://github.com/airblade/vim-gitgutter'
 
     Plug 'https://github.com/joshdick/onedark.vim'
+
+    Plug 'https://github.com/editorconfig/editorconfig-vim'
 
   call plug#end()
 "}
