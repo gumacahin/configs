@@ -32,9 +32,12 @@
   set directory=~/.vim/tmp     " where to save swap files
   filetype plugin indent on
   set wildmenu
-  set nofileignorecase         " very difficult feature to get used to
+  "set nofileignorecase         " very difficult feature to get used to
+  "set fileignorecase
+  set wildignorecase
   set showcmd                  " echo the keys typed in normal mode
   "set spell
+  set autoread                 " Auto read file when file is changed outside.
   set virtualedit=block
   " side-scrolling
   set nowrap
@@ -43,30 +46,27 @@
   set sidescrolloff=10
   set noerrorbells visualbell t_vb= " no beeping please!
   autocmd GUIEnter * set visualbell t_vb=
-  let mapleader="\\"
+  let mapleader=","
+  map <leader>t :NERDTreeToggle<CR>
+  " :W sudo saves the file 
+" (useful for handling the permission-denied error)
+  command! W w !sudo tee % > /dev/null
+  set nobackup
+  set nowb
+  set noswapfile
 " }
 
-
+" MacVim Cmd-S save shortcut disabled please see .gvimrc
 " GUI_OPTIONS {
-  if has('gui_running')
+  "if has('gui_running')
     " remove menu bar, tool bar & scroll bar... but leave the icon as is
     set guioptions=i
     set guifont=Roboto\ Mono:h14
-  endif
+  "endif
 
   " au GUIEnter * simalt ~x  " start maximized, windows only
   set mousemodel=popup_setpos
-  " Disable MacVim save shortcut
-    macmenu File.Save key=<nop>
-
-  " Exit to Normal mode upon [Cmd+S]
-  inoremap <D-s> <Esc>:w<CR>
-  vnoremap <D-s> <Esc>:w<CR>
-
-  " Save in Normal mode (block Substitute)
-  nnoremap <D-s> :w<CR>
 " }
-
 
 " APPEARANCE {
   " see .gvimrc
@@ -106,7 +106,7 @@
   " now using an HHKB :)
   imap jj <Esc>
   " cindent fix for '#' comments
-  inoremap # X#
+  "inoremap # X#
   " Pg Up/Down
 "  nmap <BS> 
 "  nmap <Space> 
@@ -116,10 +116,10 @@
   " nmap <A-l> l
   " nmap <A-k> k
   " nmap <A-j> j
-  nmap <up> k
-  nmap <left> h
-  nmap <right> l
-  nmap <down> j
+  nmap <C-k> k
+  nmap <C-h> h
+  nmap <C-l> l
+  nmap <C-j> j
 
   " resize current window
   nmap <A-Up> +
@@ -127,7 +127,6 @@
   nmap <A-Left> <
   nmap <A-Right> >
 
-  map <C-Tab> :NERDTreeToggle<CR>
   map <C-p> :Files<CR>
 
 " }
@@ -140,8 +139,6 @@
     Plug '/usr/local/opt/fzf'
 
     Plug 'https://github.com/itchyny/lightline.vim'
-
-    Plug 'https://github.com/terryma/vim-multiple-cursors'
 
     Plug 'https://github.com/tpope/vim-eunuch'
 
@@ -158,6 +155,8 @@
     Plug 'https://github.com/joshdick/onedark.vim'
 
     Plug 'https://github.com/editorconfig/editorconfig-vim'
+
+    Plug 'https://github.com/godlygeek/tabular'
 
   call plug#end()
 "}
