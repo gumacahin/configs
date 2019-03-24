@@ -48,6 +48,7 @@
   autocmd GUIEnter * set visualbell t_vb=
   let mapleader=","
   map <leader>t :NERDTreeToggle<CR>
+  map <leader>. :Tags<CR>
   " :W sudo saves the file 
 " (useful for handling the permission-denied error)
   command! W w !sudo tee % > /dev/null
@@ -61,7 +62,7 @@
   "if has('gui_running')
     " remove menu bar, tool bar & scroll bar... but leave the icon as is
     set guioptions=i
-    set guifont=Roboto\ Mono:h14
+    set guifont=Iosevka:h14
   "endif
 
   " au GUIEnter * simalt ~x  " start maximized, windows only
@@ -104,7 +105,7 @@
 
 " KEY_BINDINGS {
   " now using an HHKB :)
-  imap jj <Esc>
+  " imap jj <Esc>
   " cindent fix for '#' comments
   "inoremap # X#
   " Pg Up/Down
@@ -158,8 +159,16 @@
 
     Plug 'https://github.com/godlygeek/tabular'
 
+    Plug 'https://github.com/tmhedberg/matchit.git'
+
+    Plug 'https://github.com/posva/vim-vue.git'
+
+    Plug 'https://github.com/arcticicestudio/nord-vim'
+
   call plug#end()
 "}
+
+" Remember to run `:PlugInstall'
 
 " PLUGINS {
 "  call pathogen#infect()        " https://github.com/tpope/vim-pathogen
@@ -186,4 +195,4 @@
   endif
 " }
 
-colorscheme onedark
+colorscheme nord
