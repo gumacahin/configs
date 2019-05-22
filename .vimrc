@@ -17,52 +17,51 @@
 " --------------------------------------------------------------------
 
 " BASICS {
-  set nocompatible
-  set encoding=utf-8
-  syntax on                    " syntax highlighting
-  set incsearch                " incremental search
-  set nohls                    " don't highlight search matches
-  set ignorecase
-  set smartcase
-  set expandtab                " use spaces instead of tabs
-  set shiftwidth=4             " number of spaces/tab
-  set smarttab                 " smart backspacing on tabs
-  set cindent                  " see KEY_BINDINGS below
-  set number                   " show line numbers
-  set directory=~/.vim/tmp     " where to save swap files
-  filetype plugin indent on
-  set wildmenu
-  "set nofileignorecase         " very difficult feature to get used to
-  "set fileignorecase
-  set wildignorecase
-  set showcmd                  " echo the keys typed in normal mode
-  "set spell
-  set autoread                 " Auto read file when file is changed outside.
-  set virtualedit=block
-  " side-scrolling
-  set nowrap
-  set sidescroll=1
-  set listchars=
-  set sidescrolloff=10
-  set noerrorbells visualbell t_vb= " no beeping please!
-  autocmd GUIEnter * set visualbell t_vb=
-  let mapleader=","
-  map <leader>t :NERDTreeToggle<CR>
-  map <leader>. :Tags<CR>
-  " :W sudo saves the file 
-" (useful for handling the permission-denied error)
-  command! W w !sudo tee % > /dev/null
-  set nobackup
-  set nowb
-  set noswapfile
-" }
+set nocompatible
+set encoding=utf-8
+syntax on                    " syntax highlighting
+set incsearch                " incremental search
+set nohls                    " don't highlight search matches
+set ignorecase
+set smartcase
+set expandtab                " use spaces instead of tabs
+set shiftwidth=4             " number of spaces/tab
+set smarttab                 " smart backspacing on tabs
+set cindent                  " see KEY_BINDINGS below
+set number                   " show line numbers
+set directory=~/.vim/tmp     " where to save swap files
+filetype plugin indent on
+set wildmenu
+"set nofileignorecase         " very difficult feature to get used to
+"set fileignorecase
+set wildignorecase
+set showcmd                  " echo the keys typed in normal mode
+"set spell
+set autoread                 " Auto read file when file is changed outside.
+set virtualedit=block
+" side-scrolling
+set nowrap
+set sidescroll=1
+set listchars=
+set sidescrolloff=10
+set noerrorbells visualbell t_vb= " no beeping please!
+autocmd GUIEnter * set visualbell t_vb=
+let mapleader=" "
+map <leader>t :NERDTreeToggle<CR>
+map <leader>. :Tags<CR>
+
+set nobackup
+set noswapfile
+
+" Makes hitting Cmd-S Save the buffer and enter normal mode if it's in insert
+" mode
 
 " MacVim Cmd-S save shortcut disabled please see .gvimrc
 " GUI_OPTIONS {
   "if has('gui_running')
     " remove menu bar, tool bar & scroll bar... but leave the icon as is
-    set guioptions=i
-    set guifont=Iosevka:h14
+set guioptions=i
+set guifont=Iosevka:h14
   "endif
 
   " au GUIEnter * simalt ~x  " start maximized, windows only
@@ -128,12 +127,12 @@
   nmap <A-Left> <
   nmap <A-Right> >
 
-  map <C-p> :Files<CR>
 
 " }
 
 " PLUGINS {
   call plug#begin('~/.vim/plugged')
+
 
     Plug 'https://github.com/junegunn/fzf.vim'
 
@@ -153,46 +152,33 @@
 
     Plug 'https://github.com/airblade/vim-gitgutter'
 
-    Plug 'https://github.com/joshdick/onedark.vim'
-
     Plug 'https://github.com/editorconfig/editorconfig-vim'
 
     Plug 'https://github.com/godlygeek/tabular'
 
-    Plug 'https://github.com/tmhedberg/matchit.git'
-
-    Plug 'https://github.com/posva/vim-vue.git'
+    Plug 'https://github.com/sheerun/vim-polyglot'
 
     Plug 'https://github.com/arcticicestudio/nord-vim'
+
+
 
   call plug#end()
 "}
 
-" Remember to run `:PlugInstall'
+let g:ale_fixers = {
+\   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\   'javascript': ['eslint'],
+\}
 
-" PLUGINS {
-"  call pathogen#infect()        " https://github.com/tpope/vim-pathogen
-"  " vim-airline
-"  let g:airline_powerline_fonts = 1
 
-" }
+nnoremap <silent> <C-b> :Buffers<CR>
+"nnoremap <silent> <C-g>g :Ag<CR>
+"nnoremap <silent> <C-g>c :Commands<CR>
+"nnoremap <silent> <C-g>l :BLines<CR>
+nnoremap <silent> <C-p> :Files<CR>
 
-" TEMPLATES {
-"  augroup Templates
-"    au!
-"    au BufNewFile * silent! 0r $HOME/.vim/templates/%:e.tpl
-"  augroup END
-" }
-
-"autocmd FileType javascript setlocal shiftwidth=2 tabstop=2
-"autocmd FileType phtml setlocal shiftwidth=2 tabstop=2
-"autocmd FileType html setlocal shiftwidth=2 tabstop=2
-
-" ETC {
-  if $VIM_CRONTAB == "true"
-      set nobackup
-      set nowritebackup
-  endif
-" }
-
+autocmd FileType javascript setlocal shiftwidth=2
+autocmd FileType phtml setlocal shiftwidth=2
+autocmd FileType html setlocal shiftwidth=2
+autocmd FileType css,scss setlocal shiftwidth=2
 colorscheme nord
