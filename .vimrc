@@ -171,7 +171,8 @@ let g:ale_fixers = {
 \}
 
 
-nnoremap <silent> <C-b> :Buffers<CR>
+nnoremap <silent> <leader>b :Buffers<CR>
+nnoremap <silent> <leader>r :Rg<CR>
 "nnoremap <silent> <C-g>g :Ag<CR>
 "nnoremap <silent> <C-g>c :Commands<CR>
 "nnoremap <silent> <C-g>l :BLines<CR>
