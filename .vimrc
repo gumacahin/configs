@@ -46,9 +46,9 @@ set listchars=
 set sidescrolloff=10
 set noerrorbells visualbell t_vb= " no beeping please!
 autocmd GUIEnter * set visualbell t_vb=
+
 let mapleader=" "
-map <leader>t :NERDTreeToggle<CR>
-map <leader>. :Tags<CR>
+nnoremap <leader>. :Tags<CR>
 
 set nobackup
 set noswapfile
@@ -104,7 +104,8 @@ set guifont=Iosevka:h14
 
 " KEY_BINDINGS {
   " now using an HHKB :)
-  " imap jj <Esc>
+  inoremap jk <Esc>
+  nnoremap <leader>t :NERDTreeToggle<CR>
   " cindent fix for '#' comments
   "inoremap # X#
   " Pg Up/Down
@@ -116,17 +117,19 @@ set guifont=Iosevka:h14
   " nmap <A-l> l
   " nmap <A-k> k
   " nmap <A-j> j
-  nmap <C-k> k
-  nmap <C-h> h
-  nmap <C-l> l
-  nmap <C-j> j
+  nnoremap <C-k> k
+  nnoremap <C-h> h
+  nnoremap <C-l> l
+  nnoremap <C-j> j
 
   " resize current window
-  nmap <A-Up> +
-  nmap <A-Down> -
-  nmap <A-Left> <
-  nmap <A-Right> >
+  nnoremap <A-Up> +
+  nnoremap <A-Down> -
+  nnoremap <A-Left> <
+  nnoremap <A-Right> >
 
+inoremap <C-u> <Esc>viwUea
+nnoremap <C-u> viwUe
 
 " }
 
@@ -160,6 +163,8 @@ set guifont=Iosevka:h14
 
     Plug 'https://github.com/arcticicestudio/nord-vim'
 
+    Plug 'https://github.com/ludovicchabant/vim-gutentags'
+
 
 
   call plug#end()
@@ -171,15 +176,30 @@ let g:ale_fixers = {
 \}
 
 
-nnoremap <silent> <leader>b :Buffers<CR>
-nnoremap <silent> <leader>r :Rg<CR>
+" Open FZF and prevent FZF from opening a file in the nerdtree window.
+nnoremap <silent> <expr> <Leader><Leader> (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":FZF\<cr>"
+
+" close all other windows
+nnoremap <silent> <leader>o <C-w>o
+
+" Open FZF (search buffers) and prevent FZF from opening a file in the nerdtree window.
+nnoremap <silent> <expr> <Leader>b (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":Buffers\<cr>"
+
+" Open FZF (Rg search) and prevent FZF from opening a file in the nerdtree window.
+nnoremap <silent> <expr> <Leader>b (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":Rg\<cr>"
+"
 "nnoremap <silent> <C-g>g :Ag<CR>
 "nnoremap <silent> <C-g>c :Commands<CR>
 "nnoremap <silent> <C-g>l :BLines<CR>
-nnoremap <silent> <C-p> :Files<CR>
+
 
 autocmd FileType javascript setlocal shiftwidth=2
 autocmd FileType phtml setlocal shiftwidth=2
 autocmd FileType html setlocal shiftwidth=2
 autocmd FileType css,scss setlocal shiftwidth=2
 colorscheme nord
+
+
+
+
+
