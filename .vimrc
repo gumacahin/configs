@@ -32,24 +32,29 @@ set incsearch
 set nohls
 
 " Ignore case when searching but don't ignore case when there are upper case
-" chars in search
+" chars in search.
 set ignorecase
 set smartcase
 
 " Let's use tabs!
 set tabstop=4
-" Use tabstop value.
+
+" Use tabstop value. Should we ever decide to turn tabs into spaces again via
+" expandtabs this setting will fallback to the tabstop setting above.
 set shiftwidth=0
-" Use mart backspacing on tabs.
+
+" Use smart backspacing on expanded tabs. Again, only if we ever go back to
+" expandtabs.
 set smarttab
 
 " Show line numbers.
 set number
 
 " It turns on `detection', `plugin' and `indent' at once.
-" https://vi.stackexchange.com/questions/10124/what-is-the-difference-between-filetype-plugin-indent-on-and-filetype-indent
+" See @{https://vi.stackexchange.com/questions/10124/what-is-the-difference-between-filetype-plugin-indent-on-and-filetype-indent}.
 filetype plugin indent on
 
+" Wildmenu settings. Too lengthy to explain.
 set wildmenu
 set wildignorecase
 
@@ -62,9 +67,13 @@ set autoread
 " Useful when block editing.
 set virtualedit=block
 
+" I still find wrapping difficult to get used to.
 set nowrap
 
 set sidescroll=1
+
+" I'm not used to the weird symbols gets appended at the end of lines when
+" they are too long.
 set listchars=
 set sidescrolloff=10
 
@@ -102,36 +111,40 @@ set scrolloff=999
 "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ KEY BINDINGS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 let mapleader=" "
-nnoremap <leader>. :Tags<CR>
+nnoremap <leader>. :Tags<cr>
 
 " Using a Mac. Cmd-S saves the file. See .gvimrc which has the ff:
 " macmenu File.Save key=<nop>
 " macmenu File.Save\ All key=<nop>
 " macmenu File.Save\ As\.\.\. key=<nop>
 " " Exit to Normal mode upon [Cmd+S]
-" inoremap <D-s> <Esc>:w<CR><Right>
-" vnoremap <D-s> <Esc>:w<CR>
+" inoremap <D-s> <Esc>:w<cr><Right>
+" vnoremap <D-s> <Esc>:w<cr>
 " Save in Normal mode (block Substitute)
-"nnoremap <D-s> :w<CR>
+"nnoremap <D-s> :w<cr>
 
 " Easy escape.
-inoremap jk <Esc>
+inoremap jk <esc>
 
 " Uppercase word.
-inoremap <C-u> <Esc>viwUea
-nnoremap <C-u> viwUe
+inoremap <c-u> <esc>viwUea
+nnoremap <c-u> viwUe
 
 " Toogle NERDTree.
-nnoremap <C-n> :NERDTreeToggle<CR>
+nnoremap <c-n> :NERDTreeToggle<cr>
+
+" Edit/Source my .vimrc
+nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+nnoremap <leader>sv :source $MYVIMRC<cr>
 
 " Window related bindings.
 " Close all other windows.
-nnoremap <silent> <leader>o <C-w>o
+nnoremap <silent> <leader>o <c-w>o
 " Window movement.
-nnoremap <C-k> k
-nnoremap <C-h> h
-nnoremap <C-l> l
-nnoremap <C-j> j
+nnoremap <c-k> k
+nnoremap <c-h> h
+nnoremap <c-l> l
+nnoremap <c-j> j
 " Resize current window.
 nnoremap <A-Up> +
 nnoremap <A-Down> -
@@ -146,7 +159,7 @@ nnoremap <silent> <expr> <Leader>b (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" 
 " Open FZF (Rg search) and prevent FZF from opening a file in the nerdtree window.
 nnoremap <silent> <expr> <Leader>b (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":Rg\<cr>"
 
-"---------------------------- PLUGINS -------------------------------------------
+"~~~~~~~~~~~~~~~~~~~~~~~~~~~~ PLUGINS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 call plug#begin('~/.vim/plugged')
 
 Plug 'https://github.com/junegunn/fzf.vim'
@@ -201,7 +214,7 @@ let g:lightline = {
 \    },
 \ }
 
-"------------------------- AUTOCOMMANDS -----------------------------------------
+"~~~~~~~~~~~~~~~~~~~~~~~~~ AUTOCOMMANDS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 autocmd FileType javascript,javascript.jsx setlocal tabstop=2
 autocmd FileType phtml setlocal tabstop=2
 autocmd FileType html setlocal tabstop=2
