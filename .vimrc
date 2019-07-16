@@ -41,6 +41,7 @@ set tabstop=4
 
 " Use tabstop value. Should we ever decide to turn tabs into spaces again via
 " expandtabs this setting will fallback to the tabstop setting above.
+set expandtab
 set shiftwidth=0
 
 " Use smart backspacing on expanded tabs. Again, only if we ever go back to
@@ -87,6 +88,8 @@ set nobackup
 set noswapfile
 
 set mousemodel=popup_setpos
+
+set spelllang="en_us"
 
 "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ APPEARANCE ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 set guifont=Iosevka:h14
