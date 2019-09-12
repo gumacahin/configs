@@ -224,4 +224,6 @@ autocmd FileType html setlocal tabstop=2
 autocmd FileType css,scss setlocal tabstop=2
 autocmd FileType vim setlocal tabstop=2
 
+runtime macros/matchit.vim
+
 colorscheme nord
