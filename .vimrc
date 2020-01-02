@@ -16,7 +16,7 @@
 "                                         Sat Aug 25 19:53:11 PHT 2012
 " --------------------------------------------------------------------
 
-"~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ BASICS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+"%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% BASICS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 " The alpha and omega.
 set nocompatible
@@ -91,7 +91,7 @@ set mousemodel=popup_setpos
 
 set spelllang="en_us"
 
-"~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ APPEARANCE ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+"%%%%%%%%%%%%%%%%%%%%%%%%%%%%% APPEARANCE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 set guifont=Iosevka:h14
 
 " Turn off everything except the app icon.
@@ -127,7 +127,9 @@ nnoremap <leader>. :Tags<cr>
 "nnoremap <D-s> :w<cr>
 
 " Easy escape.
-inoremap jk <esc>
+"inoremap jk <esc>
+inoremap kj <esc>
+inoremap <esc> <nop>
 
 " Uppercase word.
 inoremap <c-u> <esc>viwUea
@@ -143,16 +145,19 @@ nnoremap <leader>sv :source $MYVIMRC<cr>
 " Window related bindings.
 " Close all other windows.
 nnoremap <silent> <leader>o <c-w>o
+nnoremap <silent> <leader>= <c-w>=
 " Window movement.
 nnoremap <c-k> k
 nnoremap <c-h> h
 nnoremap <c-l> l
 nnoremap <c-j> j
+
 " Resize current window.
-nnoremap <A-Up> +
-nnoremap <A-Down> -
-nnoremap <A-Left> <
-nnoremap <A-Right> >
+nnoremap <M-Up> <c-w>+
+nnoremap <M-Down> <c-w>- 
+nnoremap <M-Left> <c-w><
+nnoremap <M-Right> <c-w>>
+
 
 " Bindings for FZF. 
 " Open FZF and prevent FZF from opening a file in the nerdtree window.
@@ -160,9 +165,9 @@ nnoremap <silent> <expr> <Leader><Leader> (expand('%') =~ 'NERD_tree' ? "\<c-w>\
 " Open FZF (search buffers) and prevent FZF from opening a file in the nerdtree window.
 nnoremap <silent> <expr> <Leader>b (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":Buffers\<cr>"
 " Open FZF (Rg search) and prevent FZF from opening a file in the nerdtree window.
-nnoremap <silent> <expr> <Leader>b (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":Rg\<cr>"
+nnoremap <silent> <expr> <Leader>r (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":Rg\<cr>"
 
-"~~~~~~~~~~~~~~~~~~~~~~~~~~~~ PLUGINS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+"%%%%%%%%%%%%%%%%%%%%%%%%%%%% PLUGINS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 call plug#begin('~/.vim/plugged')
 
 Plug 'https://github.com/junegunn/fzf.vim'
@@ -217,8 +222,9 @@ let g:lightline = {
 \    },
 \ }
 
-"~~~~~~~~~~~~~~~~~~~~~~~~~ AUTOCOMMANDS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+"%%%%%%%%%%%%%%%%%%%%%%%%% AUTOCOMMANDS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 autocmd FileType javascript,javascript.jsx setlocal tabstop=2
+autocmd FileType json setlocal tabstop=2
 autocmd FileType phtml setlocal tabstop=2
 autocmd FileType html setlocal tabstop=2
 autocmd FileType css,scss setlocal tabstop=2
