@@ -92,9 +92,9 @@ set mousemodel=popup_setpos
 set spelllang="en_us"
 
 "%%%%%%%%%%%%%%%%%%%%%%%%%%%%% APPEARANCE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-set guifont=Iosevka:h14
+set guifont=Iosevka:h12
 
-" Turn off everything except the app icon.
+"Turn off everything except the app icon.
 set guioptions=i
 
 " Highlight the current row in the active window.
@@ -142,6 +142,10 @@ nnoremap <c-n> :NERDTreeToggle<cr>
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
 
+" Quick edits
+nnoremap <leader>vh :vsplit /usr/local/etc/httpd/extra/httpd-vhosts.conf<cr>
+
+
 " Window related bindings.
 " Close all other windows.
 nnoremap <silent> <leader>o <c-w>o
@@ -170,37 +174,47 @@ nnoremap <silent> <expr> <Leader>r (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" 
 "%%%%%%%%%%%%%%%%%%%%%%%%%%%% PLUGINS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 call plug#begin('~/.vim/plugged')
 
-Plug 'https://github.com/junegunn/fzf.vim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-Plug '/usr/local/opt/fzf'
+Plug 'https://github.com/sbdchd/neoformat'
+
+Plug 'https://github.com/arcticicestudio/nord-vim'
+ 
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 
 Plug 'https://github.com/itchyny/lightline.vim'
 
-Plug 'https://github.com/tpope/vim-eunuch'
-
-Plug 'https://github.com/tpope/vim-surround'
-
 Plug 'https://github.com/scrooloose/nerdtree'
 
-Plug 'https://github.com/mattn/emmet-vim'
-
-Plug 'https://github.com/w0rp/ale'
+Plug 'https://github.com/dense-analysis/ale'
 
 Plug 'https://github.com/airblade/vim-gitgutter'
 
 Plug 'https://github.com/editorconfig/editorconfig-vim'
 
-Plug 'https://github.com/godlygeek/tabular'
-
-Plug 'https://github.com/arcticicestudio/nord-vim'
-
 Plug 'https://github.com/ludovicchabant/vim-gutentags'
 
 Plug 'https://github.com/tpope/vim-commentary'
 
-Plug 'https://github.com/sheerun/vim-polyglot'
+Plug 'pangloss/vim-javascript'    " JavaScript support
 
-Plug 'https://github.com/mxw/vim-jsx'
+Plug 'leafgarland/typescript-vim' " TypeScript syntax
+
+Plug 'maxmellon/vim-jsx-pretty'   " JS and JSX syntax
+
+Plug 'jparise/vim-graphql'        " GraphQL syntax
+
+Plug 'Shougo/vinarise.vim'
+
+Plug 'https://github.com/ctrlpvim/ctrlp.vim'
+
+"Plug 'https://github.com/sheerun/vim-polyglot'
+
+" Plug 'https://github.com/mxw/vim-jsx'
+
+" Plug 'https://github.com/vim-vdebug/vdebug'
+
 
 call plug#end()
 
@@ -222,13 +236,16 @@ let g:lightline = {
 \    },
 \ }
 
+
 "%%%%%%%%%%%%%%%%%%%%%%%%% AUTOCOMMANDS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-autocmd FileType javascript,javascript.jsx setlocal tabstop=2
-autocmd FileType json setlocal tabstop=2
-autocmd FileType phtml setlocal tabstop=2
-autocmd FileType html setlocal tabstop=2
-autocmd FileType css,scss setlocal tabstop=2
-autocmd FileType vim setlocal tabstop=2
+" autocmd FileType javascript,javascript.jsx setlocal tabstop=2
+" autocmd FileType json setlocal tabstop=2
+" autocmd FileType phtml setlocal tabstop=2
+" autocmd FileType html setlocal tabstop=2
+" autocmd FileType css,scss setlocal tabstop=2
+" autocmd FileType vim setlocal tabstop=2
+" " autocmd BufWritePre *.js Neoformat
+" autocmd BufWritePre,TextChanged,InsertLeave *.js Neoformat
 
 runtime macros/matchit.vim
 
